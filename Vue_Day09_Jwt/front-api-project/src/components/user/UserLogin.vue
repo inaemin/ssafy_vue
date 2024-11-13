@@ -8,13 +8,18 @@
 </template>
 
 <script setup>
-import {ref} from 'vue'
-import {useUserStore} from '@/stores/user'
+import { ref } from 'vue';
+import { useUserStore } from '@/stores/user';
 
 const store = useUserStore();
 
-const id = ref("")
-const password = ref("")
+const id = ref('');
+const password = ref('');
+
+const login = function(){
+  store.userLogin(id.value, password.value)
+}
+
 
 
 </script>

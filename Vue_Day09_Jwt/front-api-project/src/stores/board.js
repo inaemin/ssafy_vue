@@ -8,7 +8,11 @@ const REST_API_URL = `http://localhost:8080/api-board/board`
 export const useBoardStore = defineStore('board', () => {
   const boardList = ref([]) //게시글 목록을 스토어에서 관리하겠다~
   const getBoardList = function () {
-    axios.get(REST_API_URL)
+    axios.get(REST_API_URL, {
+      headers: {
+        'access-token': sessionStorage.getItem('access-token')
+      }
+    })
       .then((response) => {
         // console.log(response.data)
         boardList.value = response.data
