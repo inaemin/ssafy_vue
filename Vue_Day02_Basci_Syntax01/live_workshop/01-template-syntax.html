@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <p>{{msg}}</p>
+      <p>{{rawHTML}}</p>
+      <div v-html="rawHTML"></div>
+      <!-- 속성 바인딩 -->
+      <div v-bind:id="dynamicId">동적ID</div>
+      <!-- 자바스크립트 표현식 -->
+      <p>{{number + 1}}</p>
+      <p>{{ok ? "yes" : "no"}}</p>
+      <p>{{msg.split('').reverse().join('')}}</p>
+      <p :id="`list-${number}`">동적ID2</p>
+      <p v-if="ok">이거 보이나?</p>
+      <p v-show="ok">이거 보이나?</p>
+      <div>1</div>
+    </div>
+    <script>
+      const { createApp, ref } = Vue;
+
+      const app = createApp({
+        setup() {
+          const msg = ref("Hello Vue!");
+          const rawHTML = ref(
+            '<span style="color:red">이것은 빨강인가요?</span>'
+          );
+          const dynamicId = ref("my-id");
+          const number = ref(10);
+          const ok = ref(true);
+
+          return { msg, rawHTML, dynamicId, number, ok };
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>

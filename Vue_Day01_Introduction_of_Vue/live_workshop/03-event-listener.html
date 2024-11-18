@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      {{count}}
+      <button v-on:click="increment">증가</button>
+    </div>
+    <script>
+      const { createApp, ref } = Vue; // 구조분해할당
+      // 2. Vue Instance 생성완료
+      const app = createApp({
+        setup() {
+          const count = ref(0);
+          const increment = function () {
+            count.value++;
+          };
+          return { count, increment };
+        },
+      });
+      // 3. DOM과 연결을 하겠다.
+      app.mount("#app");
+    </script>
+  </body>
+</html>
